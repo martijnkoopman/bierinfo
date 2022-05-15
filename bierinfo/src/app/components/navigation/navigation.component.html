@@ -1,0 +1,45 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/" routerLinkActive="active">
+        <mat-icon mat-list-icon>home</mat-icon>
+        <div mat-line>Home</div>
+      </a>
+
+      <mat-divider></mat-divider>
+
+      <a mat-list-item routerLink="/bierstijlen">
+        <mat-icon mat-list-icon>liquor</mat-icon>
+        <div mat-line>Bierstijlen</div>
+      </a>
+      <a mat-list-item routerLink="/biermerken">
+        <mat-icon mat-list-icon>grade</mat-icon>
+        <div mat-line>Biermerken</div>
+      </a>
+      <a mat-list-item routerLink="/bieren">
+        <mat-icon mat-list-icon>sports_bar</mat-icon>
+        <div mat-line>Bieren</div>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Bierinfo.nl</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>
